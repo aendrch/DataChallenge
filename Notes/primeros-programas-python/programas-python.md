@@ -62,6 +62,8 @@ print(product)
 
 Una variable asume un tipo de datos. En el programa anterior, ```sum``` obtiene el tipo ```int```. Sin embargo, hay muchos más tipos de datos. Como por ejemplo:
 
-|Left	|Center	|Right	|
-|:-----	|-----	|-----	|
-
+|Tipo		|Descripción				|Ejemplo					|
+|:-----		|-----					|-----						|
+|Tipo numérico	|Número, con o sin decimales		|```int, float, complex, no = 3```		|
+|Tipo de texto	|Cadena de caracteres			|```str = "a literal string```			|
+|Tipo booleano	|Boolean				|```continue = True```				|
