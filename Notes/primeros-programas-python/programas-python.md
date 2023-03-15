@@ -67,3 +67,26 @@ Una variable asume un tipo de datos. En el programa anterior, ```sum``` obtiene 
 |Tipo numérico	|Número, con o sin decimales		|```int, float, complex, no = 3```		|
 |Tipo de texto	|Cadena de caracteres			|```str = "a literal string```			|
 |Tipo booleano	|Boolean				|```continue = True```				|
+
+Ejemplo de código en donde usamos los tipos anteriores:
+
+```
+planets_in_solar_system = 8 # int, pluto used to be the 9th planet, but is too small
+distance_to_alpha_centauri = 4.367 # float, lightyears
+can_liftoff = True
+shuttle_landed_on_the_moon = "Apollo 11" #string
+```
+
+¿Cómo saber qué tipo tiene algo?
+
+```
+distance_to_alpha_centauri = 4.367 # looks like a float
+```
+
+Como alternativa, podemos usar la función ```type()```:
+
+```
+type(distance_to_alpha_centauri) ## <class 'float'>
+```
+
+### Operadores
