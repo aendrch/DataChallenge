@@ -90,3 +90,46 @@ type(distance_to_alpha_centauri) ## <class 'float'>
 ```
 
 ### Operadores
+
+Los operadores permiten realizar varias operaciones en las variables y sus valores. La idea general es que hay un lado izquierdo, un lado derecho y un operador en el medio:
+
+```
+<left side> <operator> <right side>
+```
+
+Este es el aspecto que tendría un ejemplo real del código de marcador de posición anterior:
+
+```
+left_side = 10
+right_side = 5
+left_side / right_side # 2
+```
+
+En este ejemplo se usa una barra diagonal (```/```) para dividir el valor ```left_side``` por el valor ```right_side```.
+
+Python usa dos tipos de operadores: _aritmético_ y _asignación_.
+
+### Operadores aritméticos
+
+Con los operadores _aritméticos_, se hacen cálculos como suma, resta, división y multiplicación. Este es un subconjunto de operadores aritméticos que puede usar:
+
+|Tipo	|Descripción						|Ejemplo			|
+|:-----	|-----							|-----				|
+|+	|Operador de suma que agrega dos valores juntos		|```1 + 1```			|
+|-	|Operador de resta que quita el valor 			|```1 - 2```			|
+|/	|Operador de división					|```10 / 2```			|
+|*	|Operador de multiplicación				|```2 * 2````			|
+
+### Operadores de asignación
+
+Puede usar operadores de _asignación_ para asignar valores a una variable a lo largo del ciclo de vida de la variable. Estos son algunos operadores de asignación que es probable que encuentre a medida que aprende a compilar programas:
+
+|Tipo	|Descripción								|Ejemplo			|
+|:-----	|-----									|-----				|
+|=	|x ahora contiene 2.							|```x = 2```			|
+|+=	|x incrementado en 2. Si contenía 2 antes, ahora tiene un valor de 4 	|```x += 2```			|
+|-=	|x reducido en 2. Si contenía 2 antes, ahora tiene un valor de 0.	|```x -= 2```			|
+|/=	|x dividido por 2. Si contenía 2 antes, ahora tiene un valor de 1.	|```x /= 2```			|
+|*=	|x multiplicado por 2. Si contenía 2 antes, ahora tiene un valor de 4	|```x *= 2```			|
+
+
