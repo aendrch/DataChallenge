@@ -187,3 +187,125 @@ La salida sería:
 Today's date is: <date>
 ```
 
+### Recopilación de entradas
+
+### Entrada en la línea de comandos
+
+Al iniciar un programa mediante ```python3```, se le asigna el nombre del archivo que se va a iniciar. También puede asignarle un conjunto de argumentos: datos a los que el programa tendrá acceso al ejecutarse. Este es el aspecto que puede tener:
+
+```
+python3 backup.py 2023-01-01
+```
+
+La cadena "2023-01-01" se puede usar como instrucción para que el programa backup.py inicie una copia de seguridad a partir de esa fecha. Lo que se consigue mediante el uso de argumentos de la línea de comandos es flexibilidad. El programa puede comportarse de forma diferente en función de su entrada externa.
+
+### Argumentos de la línea de comandos
+
+¿Cómo se capturan estos comandos desde la perspectiva de la codificación? Mediante el módulo ```sys```, puede recuperar los argumentos de la línea de comandos y usarlos en el programa. Observe el código siguiente:
+
+```
+import sys
+
+print(sys.argv)
+print(sys.argv[0]) # program name
+print(sys.argv[1]) # first arg
+```
+
+```sys.argv``` es una matriz o estructura de datos que contiene muchos elementos. La primera posición, que se indica como ```0``` en la matriz, contiene el nombre del programa. La segunda posición, ```1```, contiene el primer argumento. Supongamos que el programa _backup.py_ contiene el código de ejemplo y lo ejecuta de la siguiente manera:
+
+```
+python3 backup.py 2023-01-01
+```
+
+A continuación, el programa genera el siguiente resultado:
+
+```
+['backup.py', '2023-01-01'] 
+backup.py
+2023-01-01
+```
+
+### Entrada de usuario
+
+Otra manera de pasar datos al programa es hacer que el usuario escriba los datos. Puede codificarlo para que el programa indique al usuario que escriba información. Guarde los datos especificados en el programa y, a continuación, trabaje con ellos.
+
+Para capturar información del usuario, use la función ```input()```. Este es un ejemplo:
+
+```
+print("Welcome to the greeter program")
+name = input("Enter your name: ")
+print("Greetings " + name)
+```
+
+Supongamos que el programa ```input.py``` contiene el mismo código y lo ejecuta de la siguiente manera:
+
+```
+python3 input.py
+```
+
+Al ejecutar el programa, se le invita a escribir su nombre, por ejemplo:
+
+```
+Welcome to the greeter program
+Enter your name:
+```
+
+Después de escribir un valor y presionar **Enter** (Entrar), se devuelve el saludo:
+
+```
+Welcome to the greeter program
+Enter your name: Picard
+Greetings Picard
+```
+
+### Trabajo con números
+
+La función ```input()``` almacena un resultado como una cadena, por lo que es posible que el código siguiente no haga lo que quiera:
+
+```
+print("calculator program")
+first_number = input("first number: ")
+second_number = input("second number: ")
+print(first_number + second_number)
+```
+
+La ejecución de este programa le invita a escribir el primer número, supongamos:```3```
+
+```
+calculator program
+first number: 3
+```
+
+Después de presionar Enter (Entrar), puede escribir el segundo número, supongamos:4
+
+```
+calculator program
+first number: 3
+second number: 4
+```
+
+Al presionar **Enter** (Entrar), haga clic en el siguiente resultado:
+
+```
+calculator program
+first number: 3
+second number: 4
+34
+```
+
+Probablemente ha pensado en que este programa le responda con ```7``` lugar de ```34```. ¿Qué ha fallado?
+
+La explicación es que ```first_number``` y ```second_number``` son cadenas. Para que el cálculo funcione correctamente, debe cambiar esas cadenas a números mediante la función ```int()```. Al modificar la última línea del programa para usar ```int()```, puede resolver el problema:
+
+```
+print(int(first_number) + int(second_number))
+```
+
+Volver a ejecutar el programa con los mismos valores ahora devuelve ```7``` como respuesta:
+
+```
+calculator program
+first number: 3
+second number: 4
+7
+```
