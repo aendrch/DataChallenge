@@ -132,4 +132,58 @@ Puede usar operadores de _asignación_ para asignar valores a una variable a lo 
 |/=	|x dividido por 2. Si contenía 2 antes, ahora tiene un valor de 1.	|```x /= 2```			|
 |*=	|x multiplicado por 2. Si contenía 2 antes, ahora tiene un valor de 4	|```x *= 2```			|
 
+### Fechas
+
+Al compilar programas, es probable que interactúe con fechas. Una fecha en un programa suele indicar tanto la fecha del calendario como la hora.
+
+Puede usar una fecha en varias aplicaciones, como en estos ejemplos:
+
+* **Archivo de copia de seguridad**: El uso de una fecha como parte del nombre de un archivo de copia de seguridad es una buena manera de indicar cuándo se realizó una copia de seguridad y cuándo es necesario realizarla de nuevo.
+* **Condición**: Es posible que quiera llevar una lógica específica cuando haya una fecha determinada.
+* **Métrica**: Las fechas se usan para comprobar el rendimiento del código para, por ejemplo, medir el tiempo necesario para ejecutar una función.
+
+Para trabajar con una fecha, debe importar el módulo ```date```:
+
+```
+from datetime import date
+```
+
+A continuación, puede llamar a las funciones con las que quiere trabajar. Para obtener la fecha de hoy, puede llamar a la función ```today()```:
+
+```
+date.today()
+```
+
+Para mostrar la fecha en la consola, puede usar la función ```print()```. La función ```print()``` adopta muchos tipos de datos como entrada. Aquí se muestra cómo puede mostrar la fecha de hoy:
+
+### Conversión de tipos de datos
+
+Quiere usar una fecha con algo, normalmente una cadena. Si, por ejemplo, desea mostrar la fecha de hoy en la consola, podría experimentar algún problema:
+
+```
+print("Today's date is: " + date.today())
+```
+
+Lo que se obtiene es un error:
+
+```
+Traceback (most recent call last):
+  File "/<path>/program.py", line 4, in <module>
+    print("Today's date" + date.today())
+TypeError: can only concatenate str (not "datetime.date") to str
+```
+
+La última fila del mensaje le indica cuál es el problema. Está intentando usar el operador ```+``` y combinar dos tipos de datos diferentes, una cadena y una fecha.
+
+Para que este código funcione, debe convertir la fecha en una cadena. Para realizar esta conversión, use la función de utilidad ```str()```:
+
+```
+print("Today's date is: " + str(date.today()))
+```
+
+La salida sería:
+
+```
+Today's date is: <date>
+```
 
