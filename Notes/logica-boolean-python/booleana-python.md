@@ -189,4 +189,56 @@ else:
     # statement(s) to be run
 ```
 
+## ¿Qué son los operadores "and" y "or"?
 
+Cuando se requiera combinar expresiones para evaluar varias condiciones en una instrucción ```if```, ```elif``` o ```else```. Se utilizarían los operadores booleanos ```and``` y ```or```.
+
+### El operador ```or```
+
+Puede conectar dos expresiones booleanas, o de prueba, mediante el operador booleano ```or```. Para que toda la expresión se evalúe como ```True```, al menos una de las subexpresiones debe ser true. Si ninguna de las subexpresiones es true, toda la expresión se evalúa como ```False```. Por ejemplo, en la expresión siguiente, toda la expresión de prueba se evalúa como ```True```, porque se ha cumplido una de las condiciones de las subexpresiones:
+
+
+```
+a = 23
+b = 34
+if a == 34 or b == 34:
+    print(a + b)
+```
+
+Si las dos subexpresiones son true, toda la expresión de prueba también se evalúa como ```True```.
+
+Una expresión booleana que usa ```or``` tiene la sintaxis siguiente:
+
+```
+sub-expression1 or sub-expression2
+```
+
+### El operador ```and```
+
+También puede conectar dos expresiones de prueba mediante el operador booleano ```and```. Las dos condiciones de la expresión de prueba deben cumplirse para que toda la expresión de prueba se evalúe como ```True```. En cualquier otro caso, la expresión de prueba es ```False```. En el ejemplo siguiente, toda la expresión de prueba se evalúa como ```False```, porque solo una de las condiciones de las subexpresiones es true:
+
+```
+a = 23
+b = 34
+if a == 34 and b == 34:
+    print (a + b)
+```
+
+Una expresión booleana que usa ```and``` tiene la sintaxis siguiente:
+
+```
+sub-expression1 and sub-expression2
+```
+
+### Diferencia entre ```and``` y ```or```
+
+Para resaltar la diferencia entre los dos operadores booleanos, puede usar una _tabla de verdad_. Una tabla de verdad muestra cómo se evalúa toda la expresión de prueba en función de las dos subexpresiones.
+
+Esta es la tabla de verdad para ```and```:
+
+|```subexpression1```|**Operador**|```subexpression2```  |Resultado |
+|------              |-----       |-----             	 |-----     |
+|```true```	     |```and```   |```True```		 |```True```
+|``
+|
+|
