@@ -236,9 +236,11 @@ Para resaltar la diferencia entre los dos operadores booleanos, puede usar una _
 
 Esta es la tabla de verdad para ```and```:
 
-|```subexpression1```|**Operador**|```subexpression2```  |Resultado |
-|------              |-----       |-----             	 |-----     |
-|```true```	     |```and```   |```True```		 |```True```
-|``
-|
-|
+|```subexpression1```|**Operador**|```subexpression2```  |Resultado  |
+|------              |-----       |-----             	 |-----      |
+|```True```	     |```and```   |```True```		 |```True``` |
+|```True```	     |```and```	  |```False```		 |```False```|
+|```False```	     |```and```	  |```True```		 |```False```|
+|```False```	     |```and```	  |```False```		 |```False```|
+
+
