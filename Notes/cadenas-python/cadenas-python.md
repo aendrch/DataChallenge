@@ -273,4 +273,86 @@ El método ```.join()``` necesita un elemento iterable (como una lista de Python
 
 En este ejemplo, se usa el carácter de nueva línea ```'\n'``` para unir todos los elementos de la lista.
 
+## Formato de cadenas en Python
+
+Además de transformar texto y realizar operaciones básicas, como buscar y buscar coincidencias, es esencial dar formato al texto al presentar información. La manera más sencilla de presentar información de texto con Python consiste en usar la función ```print()```. Comprobará que es fundamental incluir información en variables y otras estructuras de datos en cadenas que ```print()``` pueda usar.
+
+### Formato de signo de porcentaje (```%```)
+
+El marcador de posición de la variable de la cadena es ```%s```. Después de la cadena, use otro carácter ```%``` seguido del nombre de la variable. En el ejemplo siguiente, se muestra cómo dar formato mediante el carácter ```%```:
+
+```
+>>> mass_percentage = "1/6"
+>>> print("On the Moon, you would weigh about %s of your weight on Earth" % mass_percentage)
+On the Moon, you would weigh about 1/6 of your weight on Earth
+```
+
+El uso de varios valores cambia la sintaxis, ya que se necesitan paréntesis para rodear las variables que se pasan:
+
+```
+>>> mass_percentage = "1/6"
+>>> print("On the Moon, you would weigh about %s of your weight on Earth" % mass_percentage)
+On the Moon, you would weigh about 1/6 of your weight on Earth
+```
+
+> Aunque este método sigue siendo una manera válida de dar formato a las cadenas, puede provocar errores y reducir la claridad del código cuando se trabaja con varias variables. Cualquiera de las otras dos opciones de formato descritas en esta unidad sería más adecuada para este propósito.
+
+### El método ```format()```
+
+El método ```.format()``` usa llaves (```{}```) como marcadores de posición dentro de una cadena y utiliza la asignación de variables para reemplazar texto.
+
+```
+>>> mass_percentage = "1/6"
+>>> print("On the Moon, you would weigh about {} of your weight on Earth".format(mass_percentage))
+On the Moon, you would weigh about 1/6 of your weight on Earth
+```
+
+No es necesario asignar variables repetidas varias veces, lo que hace que sea menos detallado por que es necesario asignar menos variables.
+
+```
+>>> print("""You are lighter on the {0}, because on the {0} 
+... you would weigh about {1} of your weight on Earth""".format("Moon", mass_percentage))
+You are lighter on the Moon, because on the Moon you would weigh about 1/6 of your weight on Earth
+```
+
+En lugar de llaves vacías, la sustitución consiste en usar números. ```{0}``` significa usar el primer argumento (índice cero) de ```.format()```, que en este caso es ```Moon```. ```{0}``` funciona bien para una repetición simple, pero reduce la legibilidad. Para mejorar la legibilidad, use argumentos de palabra clave en ```.format()``` y, después, haga referencia a los mismos argumentos entre llaves:
+
+```
+>>> print("""You are lighter on the {moon}, because on the {moon} 
+... you would weigh about {mass} of your weight on Earth""".format(moon="Moon", mass=mass_percentage))
+You are lighter on the Moon, because on the Moon you would weigh about 1/6 of your weight on Earth
+```
+
+### Acerca de las cadenas f-strings
+
+A partir de la versión 3.6 de Python, es posible usar f-strings. Estas cadenas parecen plantillas y usan los nombres de variable del código. El uso de f-strings en el ejemplo anterior tendría el siguiente aspecto:
+
+```
+>>> print(f"On the Moon, you would weigh about {mass_percentage} of your weight on Earth")
+On the Moon, you would weigh about 1/6 of your weight on Earth
+```
+
+Las variables se incluyen entre llaves y la cadena _debe_ usar el prefijo ```f```.
+
+Además de que las f-strings son menos detalladas que cualquier otra opción de formato, es posible usar expresiones entre llaves. Estas expresiones pueden ser funciones u operaciones directas. Por ejemplo, si quiere representar el valor ```1/6``` como un porcentaje con una posición decimal, puede usar directamente la función ```round()```:
+
+```
+>>> round(100/6, 1)
+16.7
+```
+
+Con f-strings, no es necesario asignar un valor a una variable de antemano:
+
+```
+>>> print(f"On the Moon, you would weigh about {round(100/6, 1)}% of your weight on Earth")
+On the Moon, you would weigh about 16.7% of your weight on Earth
+```
+
+Para usar una expresión no es necesaria una llamada de función. Cualquiera de los métodos de cadena también son válidos. Por ejemplo, la cadena podría aplicar un uso específico de mayúsculas y minúsculas para crear un título:
+
+```
+>>> subject = "interesting facts about the moon"
+>>> f"{subject.title()}"
+'Interesting Facts About The Moon'
+```
 
