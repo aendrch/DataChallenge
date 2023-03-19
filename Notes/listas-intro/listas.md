@@ -116,3 +116,137 @@ print("Jupiter is the", jupiter_index + 1, "planet from the sun")
 
 > Dado que la indexación comienza por 0, debe agregar 1 para mostrar el número adecuado.
 
+## Trabajo con números en listas
+
+### Almacenamiento de números en listas
+
+Para almacenar números con decimales en Python, se debe usar el tipo ```float```. Para crear un valor float, escribimos el número con la posición decimal y asignamos a una variable:
+
+```
+gravity_on_earth = 1.0
+gravity_on_the_moon = 0.166
+```
+
+El código siguiente crea una lista en la que se muestran las fuerzas de los ocho planetas del sistema solar, en G:
+
+```
+gravity_on_planets = [0.378, 0.907, 1, 0.377, 2.36, 0.916, 0.889, 1.12]
+```
+
+En esta lista, ```gravity_on_planets[0]``` es la gravedad en Mercurio (0,378 G), ```gravity_on_planets[1]``` es la gravedad en Venus (0,907 G), y así sucesivamente.
+
+En la Tierra, un autobús de dos pisos pesa 12 650 kilogramos (kg), es decir, 12,65 toneladas. En Mercurio, donde la gravedad es de 0,378 G, el mismo autobús pesa 12,65 toneladas multiplicado por 0,378. En Python, para multiplicar dos valores, se usa el símbolo ```*```.
+
+En el ejemplo siguiente, podemos averiguar el peso de un autobús de dos pisos en diferentes planetas obteniendo el valor de la lista:
+
+```
+bus_weight = 12650 # in kilograms, on Earth
+
+print("On Earth, a double-decker bus weighs", bus_weight, "kg")
+print("On Mercury, a double-decker bus weighs", bus_weight * gravity_on_planets[0], "kg")
+
+# Output
+# On Earth, a double-decker bus weighs 12650 kg
+# On Mercury, a double-decker bus weighs 4781.7 kg
+```
+
+### Uso de ```min()``` y ```max()``` con listas
+
+Python tiene funciones integradas para calcular los números más grandes y más pequeños de una lista. La función ```max()``` devuelve el número más grande y ```min()``` devuelve el más pequeño. Por lo tanto, ```min(gravity_on_planets)``` devuelve el número más pequeño de la lista ```gravity_on_planets```, que es 0,377 (Marte).
+
+El código siguiente calcula los pesos mínimo y máximo en el sistema solar mediante esas funciones:
+
+```
+bus_weight = 12650 # in kilograms, on Earth
+
+print("On Earth, a double-decker bus weighs", bus_weight, "kg")
+print("The lightest a bus would be in the solar system is", bus_weight * min(gravity_on_planets), "kg")
+print("The heaviest a bus would be in the solar system is", bus_weight * max(gravity_on_planets), "kg")
+
+# Output
+# On Earth, a double-decker bus weighs 12650 kg
+# The lightest a bus would be in the solar system is 4769.05 kg
+# The heaviest a bus would be in the solar system is 29854 kg
+```
+
+### Manipulación de datos en la lista
+
+Python proporciona una compatibilidad sólida para trabajar con los datos de las listas. Esta compatibilidad incluye la segmentación de datos (examinando solo una parte) y la ordenación.
+
+Podemos recuperar una parte de una lista mediante una _segmentación_. Una segmentación usa corchetes, pero en lugar de un solo elemento, tiene los índices inicial y final. Cuando se usa una segmentación, se crea una lista que comienza en el índice inicial y termina antes del índice final (y _no_ lo incluye).
+
+La lista de planetas tiene ocho elementos. La Tierra es el tercero de la lista. Para mostrar los planetas que hay antes de la Tierra, use una segmentación a fin de obtener los elementos que empiezan en 0 y terminan en 2:
+
+```
+planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+planets_before_earth = planets[0:2]
+print(planets_before_earth)
+
+# Output: ['Mercury', 'Venus']
+```
+
+La Tierra no está incluida en la lista. El motivo es que el índice finaliza antes del índice final.
+
+Para obtener todos los planetas después de la Tierra, comenzamos en el tercero y vamos hasta el octavo:
+
+```
+planets_after_earth = planets[3:8]
+print(planets_after_earth) 
+
+# Output
+# ['Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+```
+
+En este ejemplo, se muestra Neptuno. La razón es que el índice de Neptuno es ```7```, porque la indexación comienza en ```0```. Dado que el índice final era ```8```, incluye el último valor. Si no coloca el índice de detención en la segmentación, Python asume que quiere ir al final de la lista:
+
+```
+planets_after_earth = planets[3:]
+print(planets_after_earth)
+
+# Output
+# ['Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+```
+
+> Una segmentación crea una lista _nueva_. No modifica la lista actual.
+
+### Combinación de listas
+
+Para unir dos listas, debe usar el otro operador ```(+)``` con dos listas para devolver una nueva.
+
+Hay 79 lunas conocidas de Júpiter. Las cuatro más grandes son Ío, Europa, Ganímedes y Calisto. Estas lunas se denominan lunas galileanas, ya que Galileo Galilei las descubrió con su telescopio en 1610. El grupo de Amaltea está más cerca de Júpiter que el grupo galileano. Consta de las lunas Metis, Adrastea, Amaltea y Tebe.
+
+Creamos dos listas. Rellene la primera lista con las cuatro lunas de Amaltea y la segunda lista con las cuatro lunas galileanas. Únalas mediante ```+``` para crear una lista:
+
+```
+amalthea_group = ["Metis", "Adrastea", "Amalthea", "Thebe"]
+galilean_moons = ["Io", "Europa", "Ganymede", "Callisto"]
+
+regular_satellite_moons = amalthea_group + galilean_moons
+print("The regular satellite moons of Jupiter are", regular_satellite_moons)
+
+# Output
+# The regular satellite moons of Jupiter are ['Metis', 'Adrastea', 'Amalthea', 'Thebe', 'Io', 'Europa', 'Ganymede', 'Callisto']
+```
+
+> La unión de listas crean una lista _nueva_. No modifica la lista actual.
+
+Para ordenar una lista, usamos el método ```.sort()``` de la lista. Python ordenará una lista de cadenas en orden alfabético y una lista de números en orden numérico:
+
+```
+regular_satellite_moons.sort()
+print("The regular satellite moons of Jupiter are", regular_satellite_moons)
+
+# Output
+# The regular satellite moons of Jupiter are ['Adrastea', 'Amalthea', 'Callisto', 'Europa', 'Ganymede', 'Io', 'Metis', 'Thebe']
+```
+
+Para ordenar una lista en orden inverso, llamamos a ```.sort(reverse=True)``` en la lista:
+
+```
+regular_satellite_moons.sort(reverse=True)
+print("The regular satellite moons of Jupiter are", regular_satellite_moons)
+
+# Output
+# The regular satellite moons of Jupiter are ['Thebe', 'Metis', 'Io', 'Ganymede', 'Europa', 'Callisto', 'Amalthea', 'Adrastea']
+```
+> El uso de ```sort``` modifica la lista actual.
