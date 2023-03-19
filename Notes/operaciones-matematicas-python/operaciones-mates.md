@@ -95,3 +95,73 @@ result_1 = 1032 + 26 * 2
 result_2 = 1032 + (26 * 2)
 # The answer is the same in both cases - 1084
 ```
+
+## Uso de números en Python
+
+Más allá de la aritmética básica, puede usar otras operaciones en los números. Es posible que tenga que realizar un redondeo o convertir cadenas en números.
+
+### Conversión de cadenas en números
+
+Python admite dos tipos principales de números: números enteros (o ```int```) y número de punto flotante (o ```float```). La diferencia clave entre ambos es la existencia de un separador decimal; los enteros son números enteros, mientras que los números de punto flotante contienen un valor decimal.
+
+Al convertir cadenas en números, debe indicar el tipo de número que desea crear. Tiene que decidir si necesita un separador decimal. Se usa ```int``` para realizar la conversión en un número entero y ```float``` para hacerlo en un número de punto flotante.
+
+```
+demo_int = int('215')
+print(demo_int)
+
+demo_float = float('215.3')
+print(demo_float)
+
+# Output:
+# 215
+# 215.3
+```
+
+> Si usa un valor no válido para ```int``` o ```float```, recibirá un error.
+
+### Valores absolutos
+
+En matemáticas, un valor absoluto es el número no negativo sin su signo. El uso de un valor absoluto puede ser útil en situaciones varias, incluido el ejemplo de búsqueda para determinar la distancia entre dos planetas. Considere los cálculos siguientes:
+
+```
+39 - 16
+16 - 39
+```
+
+Observe que la diferencia entre las dos ecuaciones es que los números se invierten. Las respuestas son ```23``` y ```-23```, respectivamente. Al determinar la distancia entre dos planetas, no importa el orden en el que se escriben los números, ya que la respuesta absoluta es la misma.
+
+Use ```abs``` para convertir el valor negativo en su valor absoluto. Si hace la misma operación mediante ```abs``` (e imprime las respuestas), verá que muestra ```23``` para ambas ecuaciones.
+
+```
+print(abs(39 - 16))
+print(abs(16 - 39))
+
+# Output
+# 23
+# 23
+```
+
+### Redondeo
+
+También es útil la función integrada de Python denominada ```round```. Úsela para redondear hacia arriba al entero más cercano si el valor decimal es ```.5``` o mayor, o bien hacia abajo si es menor que ```.5```.
+
+### Biblioteca matemática
+
+Python tiene bibliotecas para proporcionar operaciones y cálculos más avanzados. Una de las más comunes es la biblioteca ```math```. ```math``` permite hacer el redondeo con  ```floor``` y ```ceil```, proporcionar el valor de pi y muchas otras operaciones. Veamos cómo usar esta biblioteca para redondear hacia arriba o hacia abajo.
+
+El redondeo de números permite quitar la parte decimal de un número de punto flotante. Puede optar por redondear siempre hacia arriba al número entero más cercano si usa ```ceil```, o hacia abajo si usa ```floor```.
+
+```
+from math import ceil, floor
+
+round_up = ceil(12.5)
+print(round_up)
+
+round_down = floor(12.5)
+print(round_down)
+
+# Output
+# 13
+# 12
+```
