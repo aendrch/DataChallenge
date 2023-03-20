@@ -149,3 +149,117 @@ now = now + relativedelta(months=1, weeks=1, hour=10)
 print(now)
 ```
 
+## Trabajo con los archivos del proyecto
+
+### Creación de un archivo del proyecto
+
+Imaginemos que deseamos colaborar en un proyecto con otros desarrolladores. Una buena manera de colaborar es, por ejemplo, usar GitHub. No deseamos comprobar todos los archivos que tenemos, sino solo el código de la aplicación y una lista de paquetes de los que depende para que el programa funcione. ¿Por qué registrar solo una lista de paquetes y no los propios paquetes? una lista ocupa mucho menos espacio que el registro de los paquetes.
+
+> Gracias a ```pip```, lo único que necesitamos es una lista.
+
+### Uso compartido de un proyecyo
+
+Para compartir el proyecto para que otros usuarios puedan trabajar en él, seguimos estos pasos:
+
+1. Llamamos a ```pip freeze > requirements.txt```. Este comando crea un archivo requirements.txt con todos los paquetes que el programa necesita.
+2. Creamos un archivo .gitignore y registramos el código de la aplicación y requirements.txt.
+3. Registre el código para GitHub.
+
+### Administración de dependencias
+
+Los paquetes se ofrecen en distintas versiones. Cada vez que se corrige un paquete por cuestión de errores o cuando se le agregan más características, su número de versión suele cambiar. En beneficio del programa, es posible que necesitemos una versión específica de un paquete. Queremos mantener actualizado el proyecto para que usemos la última versión de un paquete.
+
+Estas son las razones principales por las que resulta conveniente actualizar los paquetes:
+
+* Correcciones de errores. La biblioteca que use puede tener problemas. Por ejemplo, una característica no funciona según lo previsto y el autor accede a ella para corregirla. Lo más probable es que necesitemos actualizar el paquete en cuanto se haya puesto en marcha una corrección de este tipo.
+* Problemas de seguridad. El paquete puede tener una vulnerabilidad de seguridad. Una vez publicada esta corrección, queremos actualizar el paquete para velar por la seguridad de su empresa y sus clientes.
+* Características adicionales. Está bien que se lancen nuevas características, aunque no es una razón de peso para actualizar el paquete. Aun así, si se lanza alguna característica que desee tener, es posible que queramos actualizar por ese motivo.
+
+_Podemos usar cualquiera de estos enfoques para asegurarnos de que los paquetes se mantienen actualizados.
+
+### Instalación de una versión más reciente
+
+Podemos buscar la última versión disponible de un paquete e instalarla en cuanto sea posible.
+
+> Comprobamos que cualquier nueva versión sea compatible con otras dependencias que podamos usar.
+
+Para instalar una versión específica, usamos ```===``` entre el nombre del paquete y el número de versión. Este es un comando de ejemplo:
+
+```
+pip install python-dateutil===1.4
+```
+
+_El comando anterior instalaría la versión 1.4, si está disponible._
+
+Hay muchas maneras de averiguar qué versiones están disponibles. Una forma es especificar una versión que sabe que no existe. El error resultante le mostrará qué versión existe. Este es un comando de ejemplo que usa la cadena sin sentido ```randomwords```:
+
+```
+pip install python-dateutil===randomwords
+```
+
+Esta es la salida resultante, con una lista de versiones existentes:
+
+```
+ERROR: Could not find a version that satisfies the requirement python-dateutil===randomwords (from versions: 1.4, 1.4.1, 1.5, 2.1, 2.2, 2.3, 2.4.0, 2.4.1, 2.4.1.post1, 2.4.2, 2.5.0, 2.5.1, 2.5.2, 2.5.3, 2.6.0, 2.6.1, 2.7.0, 2.7.1, 2.7.2, 2.7.3, 2.7.4, 2.7.5, 2.8.0, 2.8.1, 2.8.2)
+ERROR: No matching distribution found for python-dateutil===randomwords
+```
+
+Otra opción es llamar a ```pip freeze```. La salida muestra qué versiones específicas ha instalado ya, cuando solo se le asignamos el nombre del paquete como argumento:
+
+```
+pip-autoremove==0.10.0
+python-dateutil==2.8.2
+six==1.16.0
+```
+
+En el ejemplo anterior se muestra que está instalada la versión 2.8.2. Si deseamos cambiarla a una versión anterior (porque otro paquete existente la necesita), podemos usar un comando como el de este ejemplo: pip install python-dateutil===2.8.0.
+
+### Actualización de un paquete
+
+Los paquetes cambian con el tiempo. Podemos actualizar al paquete más reciente sin especificar cuál es el número de versión exacto. Usamos este comando:
+
+```
+pip install <name of package> --upgrade
+```
+
+### Aplicación de una estrategia de actualización
+
+Los paquetes usan algo denominado _versionamiento semántico_. Eso significa que, si observamos un número como la versión "1.2.3", podemos desglosar este número:
+
+|Principal	|Minor		|Revisión	|
+|-----		|-----		|-----		|
+|1		|2		|3		|
+
+* El número situado más a la izquierda se denomina ```Major```. Si este número aumenta, significa que se han introducido muchos cambios, por lo que ya no puede suponer que los métodos tienen el mismo nombre o el mismo número de argumentos que antes.
+* El número del medio se denomina ```Minor```. Si cambia, significa que se ha agregado una característica.
+* El número más a la derecha se denomina ```Patch```. Si este número aumenta, lo más probable es que se haya corregido algún error.
+
+### Limpieza de paquetes no utilizados:
+
+A veces, es posible que nos demos cuenta de que ya no necesitamos un determinado paquete de Python y, por tanto, deseamos quitarlo. En este caso, podemos usar ```pip uninstall```
+
+```
+pip uninstall python-dateutil
+```
+
+Sin embargo, si ejecuta pip freeze, verá cómo el comando anterior quitó solo la biblioteca python-dateutil. Esto puede ser problemático, ya que el proyecto ahora puede contener muchas bibliotecas sin utilizar que ocuparán espacio. Para borrar todo de lo que dependía este paquete, podemos usar ambos comandos de la siguiente forma:
+
+```
+pip freeze > requirements.txt
+pip uninstall -r requirements.txt -y
+```
+
+> Los comandos anteriores quitarían todos los paquetes instalados, escribiéndolos primero en una lista en requirements.txt y eliminando después todos los paquetes de dicha lista.
+
+Un enfoque mejor consiste en usar el comando ```autoremove```:
+
+```
+pip install pip-autoremove
+pip-autoremove python-dateutil -y
+```
+
+Ahora, si ejecutamos ```pip freeze```, veremos que solo contiene la salida siguiente:
+
+```
+pip-autoremove==0.10.0
+```
