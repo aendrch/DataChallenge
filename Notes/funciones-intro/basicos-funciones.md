@@ -83,4 +83,79 @@ Podemos comprobar que algunas funciones permiten el uso de argumentos opcionales
 
 ## Uso de argumentos de función en Python
 
-El siguiente paso es crear funciones que requieran un argumento
+El siguiente paso es crear funciones que requieran un argumento. El uso de argumentos hace que las funciones sean más flexibles, ya que pueden hacer más y conficionalizar lo que hacen.
+
+### Exigencia de un argumento
+
+Si va a pilotar un cohete, una función sin entradas obligatorias es como un equipo con un botón que le indique la hora. Si presiona el botón, una voz computarizada le indicará la hora. Pero una entrada necesaria puede ser un destino para calcular la distancia del viaje. Las entradas obligatorias se denominan argumentos para la función.
+
+Para requerir un argumento, lo ponemos entre paréntesis:
+
+```
+def distance_from_earth(destination):
+    if destination == "Moon":
+        return "238,855"
+    else:
+        return "Unable to compute to that destination"
+```
+
+Intentamos llamar a la función ```distance_from_earth()``` sin ningún argumento:
+
+```
+>>> distance_from_earth()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: distance_from_earth() missing 1 required positional argument: 'destination'
+```
+
+Python genera ```TypeError``` con un mensaje de error que indica que la función requiere un argumento denominado ```destination```. Si se pide al equipo del cohete que calcule la distancia del viaje con un destino, debe solicitar que un destino es un requisito. El código de ejemplo tiene dos rutas de acceso para una respuesta, una para la Luna y la otra para cualquier otra cosa. Usamos la Luna como entrada para obtener una respuesta:
+
+```
+>>> distance_from_earth("Moon")
+'238,855'
+```
+
+Dado que hay una condición _catch-all_, intentamos usar cualquier otra cadena como destino para comprobar ese comportamiento:
+
+```
+>>> distance_from_earth("Saturn")
+'Unable to compute to that destination'
+```
+
+### Varios argumentos necesarios
+
+Para usar varios argumentos, debemos separarlos con una coma. Vamos a crear una función que pueda calcular cuántos días se tardarán en llegar a un destino, dadas la distancia y una velocidad constante:
+
+```
+def days_to_complete(distance, speed):
+    hours = distance/speed
+    return hours/24
+```
+
+Ahora usamos la distancia entre la Tierra y la Luna para calcular cuántos días tardaría en llegar a la Luna con un límite de velocidad común de 120 kilómetros por hora:
+
+```
+>>> days_to_complete(238855, 75)
+132.69722222222222
+```
+
+### Funciones como argumentos
+
+Podemos usar el valor de la función ```days_to_complete()``` y asignarlo a una variable y, después, pasarlo a ```round()``` (una función integrada que redondea al número entero más cercano) para obtener un número entero:
+
+```
+>>> total_days = days_to_complete(238855, 75)
+>>> round(total_days)
+133
+```
+
+Pero un patrón útil es pasar las funciones a otras funciones en lugar de asignar el valor devuelto:
+
+```
+>>> round(days_to_complete(238855, 75))
+133
+```
+
+> Aunque pasar funciones directamente a otras funciones como entrada es útil, existe la posibilidad de que se reduzca la legibilidad. Este patrón es especialmente problemático cuando las funciones requieren muchos argumentos.
+
+
