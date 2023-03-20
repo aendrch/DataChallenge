@@ -225,3 +225,101 @@ También podemos pasar más de dos valores, pero debemos separarlos con una coma
 'Orbit Arrival: Thursday 14:11'
 ```
 
+## Uso de argumentos de variable en Python
+
+En Python, podemos usar cualquier número de argumentos de palabra clave y argumentos sin necesidad de declarar cada uno de ellos. Esta capacidad es útil cuando una función puede obtener un número desconocido de entradas.
+
+### Argumentos de variable
+
+Los argumentos en las funciones son necesarios. Pero cuando se usan argumentos de variable, la función permite pasar cualquier número de argumentos (incluido ```0```). La sintaxis para usar argumentos de variable es agregar un asterisco único como prefijo (```*```) antes del nombre del argumento.
+
+La función siguiente imprime los argumentos recibidos:
+
+```
+def variable_length(*args):
+    print(args)
+```
+
+> No es necesario denominar a los argumentos de variable ```args```. Podemos usar cualquier nombre de variable válido. Aunque es habitual ver ```*args``` o ```*a```, debe intentar usar la misma convención en un proyecto.
+
+En este caso ```*args``` indica a la función que acepte cualquier número de argumentos (incluido ```0```). En la función, ```args``` ahora está disponible como la variable que contiene todos los argumentos como una tupla. Probemos la función pasando cualquier número o tipo de argumentos.
+
+```
+>>> variable_length()
+()
+>>> variable_length("one", "two")
+('one', 'two')
+>>> variable_length(None)
+(None,)
+```
+
+Como podemos ver, no hay ninguna restricción en el número o tipo de argumentos que se pasan.
+
+Un cohete realiza varios pasos antes de un lanzamiento. En función de las tareas o retrasos, estos pasos pueden tardar más de lo previsto. Vamos a a crear una función de de longitud variable que pueda calcular cuántos minutos quedan hasta el inicio, dado el tiempo que va a tardar cada paso:
+
+```
+def sequence_time(*args):
+    total_minutes = sum(args)
+    if total_minutes < 60:
+        return f"Total time to launch is {total_minutes} minutes"
+    else:
+        return f"Total time to launch is {total_minutes/60} hours"
+```
+
+Probemos la función pasando cualquier número de minutos:
+
+```
+>>> sequence_time(4, 14, 18)
+'Total time to launch is 36 minutes' 
+>>> sequence_time(4, 14, 48)
+'Total time to launch is 1.1 hours'
+```
+
+> Cuando se usan argumentos de variable, a cada valor ya no se le asigna un nombre de variable. Todos los valores ahora forman parte del nombre de variable _catch-all_ que usa el asterisco (en estos ejemplos, ```args```).
+
+### Argumentos de palabra clave variable
+
+Para que una función acepte cualquier número de argumentos de palabra clave, debe usar una sintaxis similar. En este caso, se requiere un asterisco doble:
+
+```
+def variable_length(**kwargs):
+    print(kwargs)
+```
+
+Probemos la función de ejemplo, que imprime los nombres y valores pasados como ```kwargs```:
+
+```
+>>> variable_length(tanks=1, day="Wednesday", pilots=3)
+{'tanks': 1, 'day': 'Wednesday', 'pilots': 3}
+```
+
+Si ya conocemos los diccionarios, observaremos que los argumentos de palabra clave de longitud variables se asignan como un diccionario. Para interactuar con las variables y los valores, usamos las mismas operaciones que un diccionario.
+
+> Al igual que con los argumentos de variable, no es necesario usar kwargs cuando se usan argumentos de palabra clave variable. Podemos usar cualquier nombre de variable válido. Aunque es habitual ver **kwargs o **kw, debemos intentar usar la misma convención en un proyecto.
+
+En esta función, vamos a usar argumentos de palabra clave variable para notificar los astronautas asignados a la misión. Dado que esta función permite cualquier número de argumentos de palabra clave, se puede reutilizar independientemente del número de astronautas asignados:
+
+```
+def crew_members(**kwargs):
+    print(f"{len(kwargs)} astronauts assigned for this mission:")
+    for title, name in kwargs.items():
+        print(f"{title}: {name}")
+```
+
+Probemos con la tripulación del Apolo 11:
+
+```
+>>> crew_members(captain="Neil Armstrong", pilot="Buzz Aldrin", command_pilot="Michael Collins")
+3 astronauts assigned for this mission:
+captain: Neil Armstrong
+pilot: Buzz Aldrin
+command_pilot: Michael Collins
+```
+
+Dado que podemos pasar cualquier combinación de argumentos de palabra clave, asegurémonos de evitar palabras clave repetidas. Las palabras clave repetidas producirán un error.
+
+```
+>>> crew_members(captain="Neil Armstrong", pilot="Buzz Aldrin", pilot="Michael Collins")
+  File "<stdin>", line 1
+SyntaxError: keyword argument repeated: pilot
+```
